@@ -8,7 +8,7 @@ import java.io.IOException;
 
 /**
  * Author: kelvin_hu
- * Email:  kelvin_hu@trendmicro.com.cn
+ * Email:  ini.kelvin@gmail.com
  * Date:   09/23/2013
  */
 
