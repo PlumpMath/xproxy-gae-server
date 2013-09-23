@@ -42,15 +42,14 @@
   <target name="war" depends="enhance" 
           description="Assemble the application directory">
     <mkdir dir="${war.dir}/WEB-INF"/>
-    <copy todir="${war.dir}">
-      <fileset dir="html">
-        <exclude name="**/.svn/**"/>
-        <exclude name="**/*~"/>
+    <copy todir="${war.dir}/WEB-INF">
+      <fileset dir="web/WEB-INF">
+        <include name="*.xml"/>
       </fileset>
     </copy>
-    <copy todir="${war.dir}/WEB-INF">
-      <fileset dir="src/WEB-INF">
-        <include name="*.xml"/>
+    <copy todir="${war.dir}">
+      <fileset dir="web">
+        <include name="*.jsp"/>
       </fileset>
     </copy>
     <enhance_war war="${war.dir}"/>
