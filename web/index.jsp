@@ -1,16 +1,19 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: kelvin_hu
-  Date: 9/23/13
-  Time: 5:26 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <title></title>
-  </head>
-  <body>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Hello App Engine</title>
+</head>
 
-  </body>
+<body>
+<h1>Hello App Engine!</h1>
+<table>
+    <tr>
+        <td colspan="2" style="font-weight:bold;">Available Servlets:</td>
+    </tr>
+    <tr>
+        <td><a href="helloappengine"/>HelloAppEngineServlet</td>
+    </tr>
+</table>
+</body>
 </html>
