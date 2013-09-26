@@ -46,6 +46,9 @@
       <fileset dir="web/WEB-INF">
         <include name="*.xml"/>
       </fileset>
+      <fileset dir="web/WEB-INF">
+        <include name="*.properties"/>
+      </fileset>
     </copy>
     <copy todir="${war.dir}">
       <fileset dir="web">
