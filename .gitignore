@@ -1,7 +1,8 @@
-# Intellij IDEA project files
+# Intellij IDEA project files and folders
 *.iml
 *.ipr
 *.iws
+.idea/
 
 # Compiled files
 war/
