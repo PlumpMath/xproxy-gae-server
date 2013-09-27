@@ -4,5 +4,8 @@
 *.iws
 .idea/
 
+# Intellij IDEA compiled files and folders
+out/
+
 # Compiled files
 war/
