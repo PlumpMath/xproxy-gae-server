@@ -105,4 +105,17 @@ public class XProxyServlet extends HttpServlet {
         response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
         response.getWriter().println("Sorry, xProxy does not support HTTP GET method.");
     }
+
+    private static void writeSpecificResponse(HttpServletResponse response, int statusCode, String message)
+            throws IOException {
+        response.setStatus(statusCode);
+        response.setContentType("text/plain");
+        response.getWriter().print(message);
+    }
+
+    private static void writeBadRequestResponse(HttpServletResponse response, String message)
+            throws IOException {
+        writeSpecificResponse(response, HttpServletResponse.SC_BAD_REQUEST,
+                "Bad request:\n" + "============\n" + message);
+    }
 }
