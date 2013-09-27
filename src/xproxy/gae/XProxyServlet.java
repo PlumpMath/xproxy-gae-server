@@ -133,7 +133,9 @@ public class XProxyServlet extends HttpServlet {
             throws ServletException, IOException {
         writeSpecificResponse(response,
                 HttpServletResponse.SC_METHOD_NOT_ALLOWED,
-                "\"Sorry, xProxy does not support HTTP GET method.\"");
+                "Method not allowed:\n" +
+                "===================\n" +
+                "Sorry, xProxy does not support HTTP GET method.");
     }
 
     private static void writeSpecificResponse(HttpServletResponse response, int statusCode, String message)
