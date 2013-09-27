@@ -81,13 +81,13 @@ public class XProxyServlet extends HttpServlet {
             List<HTTPHeader> headers = new ArrayList<HTTPHeader>();
             String[] headerLines = headerString.split("\r\n");
             String host = null;
-            for(int i = 0; i < headerLines.length; i++) {
-                int eon = headerLines[i].indexOf(": "); // eon: end of name
+            for(String h : headerLines) {
+                int eon = h.indexOf(": "); // eon: end of name
                 if(eon == -1) {
-                    log.warning("Invalid header found: " + headerLines[i]);
+                    log.warning("Invalid header found: " + h);
                     continue;
                 }
-                HTTPHeader header = new HTTPHeader(headerLines[i].substring(0, eon), headerLines[i].substring(eon + 2));
+                HTTPHeader header = new HTTPHeader(h.substring(0, eon), h.substring(eon + 2));
                 headers.add(header);
                 if(header.getName().equalsIgnoreCase("Host")) {
                     host = header.getValue();
