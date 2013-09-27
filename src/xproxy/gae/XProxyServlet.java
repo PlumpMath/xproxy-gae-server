@@ -115,10 +115,10 @@ public class XProxyServlet extends HttpServlet {
 
             HTTPResponse resp = URLFetchServiceFactory.getURLFetchService().fetch(req);
 
-
-
             out.write(buildResponseStatusLine(resp));
             out.write(buildResponseHeaders(resp));
+
+            log.info("The remote response content length: " + resp.getContent().length);
             out.write(resp.getContent());
         } finally {
             in.close();
@@ -165,6 +165,8 @@ public class XProxyServlet extends HttpServlet {
         StringBuilder sb = new StringBuilder();
         for(HTTPHeader header : response.getHeaders()) {
             log.info("The remote response header: " + header.getName() + ", value: " + header.getValue());
+            if(header.getName().equalsIgnoreCase("Transfer-Encoding"))
+                continue;
             sb.append(header.getName()).append(": ").append(header.getValue()).append("\r\n");
         }
         sb.append("\r\n");
