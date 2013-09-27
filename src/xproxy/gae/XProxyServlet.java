@@ -110,7 +110,7 @@ public class XProxyServlet extends HttpServlet {
             throws IOException {
         response.setStatus(statusCode);
         response.setContentType("text/plain");
-        response.getWriter().print(message);
+        response.getOutputStream().print(message);
     }
 
     private static void writeBadRequestResponse(HttpServletResponse response, String message)
