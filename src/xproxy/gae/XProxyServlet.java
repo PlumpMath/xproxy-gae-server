@@ -122,6 +122,8 @@ public class XProxyServlet extends HttpServlet {
                 log.info("The remote response content length: " + resp.getContent().length);
                 out.write(resp.getContent());
             }
+            out.flush();
+            log.info("The response has been written.");
         } finally {
             in.close();
             out.close();
