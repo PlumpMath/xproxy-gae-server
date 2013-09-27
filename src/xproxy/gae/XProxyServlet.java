@@ -115,13 +115,10 @@ public class XProxyServlet extends HttpServlet {
 
             HTTPResponse resp = URLFetchServiceFactory.getURLFetchService().fetch(req);
 
-            log.info("The remote response status code: " + resp.getResponseCode());
 
-            response.setStatus(resp.getResponseCode());
-            for(HTTPHeader header : resp.getHeaders()) {
-                log.info("Headers from remote response: " + header.getName() + ", value: " + header.getValue());
-                response.setHeader(header.getName(), header.getValue());
-            }
+
+            out.write(buildResponseStatusLine(resp));
+            out.write(buildResponseHeaders(resp));
             out.write(resp.getContent());
         } finally {
             in.close();
@@ -149,5 +146,29 @@ public class XProxyServlet extends HttpServlet {
             throws IOException {
         writeSpecificResponse(response, HttpServletResponse.SC_BAD_REQUEST,
                 "Bad request:\n" + "============\n" + message);
+    }
+
+    private static byte[] buildResponseStatusLine(HTTPResponse response) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("HTTP/1.1 "); // TODO do not hard code
+
+        log.info("The remote response status code: " + response.getResponseCode());
+
+        sb.append(response.getResponseCode());
+        sb.append(" OK"); // TODO do not hard code the response status
+        sb.append("\r\n");
+
+        return sb.toString().getBytes();
+    }
+
+    private static byte[] buildResponseHeaders(HTTPResponse response) {
+        StringBuilder sb = new StringBuilder();
+        for(HTTPHeader header : response.getHeaders()) {
+            log.info("The remote response header: " + header.getName() + ", value: " + header.getValue());
+            sb.append(header.getName()).append(": ").append(header.getValue()).append("\r\n");
+        }
+        sb.append("\r\n");
+
+        return sb.toString().getBytes();
     }
 }
