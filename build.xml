@@ -50,11 +50,6 @@
         <include name="*.properties"/>
       </fileset>
     </copy>
-    <copy todir="${war.dir}">
-      <fileset dir="web">
-        <include name="*.jsp"/>
-      </fileset>
-    </copy>
     <enhance_war war="${war.dir}"/>
   </target>
 
