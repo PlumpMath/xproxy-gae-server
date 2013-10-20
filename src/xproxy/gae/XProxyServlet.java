@@ -98,10 +98,7 @@ public class XProxyServlet extends HttpServlet {
             if(host == null || uri.startsWith("http://")) {
                 url = uri;
             } else {
-                if(host.endsWith("/"))
-                    url = host.substring(0, host.length() - 1) + uri;
-                else
-                    url = host + uri;
+                url = "http://" + host + uri;
             }
             log.info("The remote url is: " + url);
 
