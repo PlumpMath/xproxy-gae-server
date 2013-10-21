@@ -95,10 +95,13 @@ public class XProxyServlet extends HttpServlet {
             }
 
             String url;
-            if(host == null || uri.startsWith("http://")) {
+            String schema = request.getHeader("XProxy-Schema");
+            if(schema == null)
+                schema = "http://";
+            if(host == null || uri.startsWith(schema)) {
                 url = uri;
             } else {
-                url = "http://" + host + uri;
+                url = schema + host + uri;
             }
             log.info("The remote url is: " + url);
 
