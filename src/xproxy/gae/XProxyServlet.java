@@ -113,6 +113,7 @@ public class XProxyServlet extends HttpServlet {
                 req.setPayload(body.getBytes());
             }
 
+            req.getFetchOptions().doNotFollowRedirects().disallowTruncate().validateCertificate();
             HTTPResponse resp = URLFetchServiceFactory.getURLFetchService().fetch(req);
 
             out.write(buildResponseStatusLine(resp));
@@ -124,6 +125,8 @@ public class XProxyServlet extends HttpServlet {
             }
             out.flush();
             log.info("The response has been written.");
+        } catch(Exception e) {
+            log.severe(e.toString());
         } finally {
             in.close();
             out.close();
